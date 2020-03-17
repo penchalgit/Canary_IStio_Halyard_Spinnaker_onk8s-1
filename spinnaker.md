@@ -13,10 +13,12 @@ docker run --name halyard -v ~/.hal:/home/spinnaker/.hal -v ~/.kube/config:/home
 Get a shell into Halyard container
 ````sh
 docker exec -it halyard bash
+````
 Below commands are to be run inside the halyard container
 Check if you can run kubectl commands
-
+````
 kubectl cluster-info
+````
 Set Kubernetes as the cloud provider
 hal config provider kubernetes enable
 Add a kubernetes account
