@@ -1,16 +1,20 @@
+#### Helm Setup on K8s cluster
 
-Helm is a tool created to streamline the installation and management of Kubernetes applications. You can think of Helm like the YUM / APT or Homebrew package managers for Kubernetes.
+
 
 There are few prerequisites required for a successful installation and operation of Helm.
 A Kubernetes cluster
+````
 Admin access to install Tiller
+````
 Locally configured kubectl.
 
+````
 Step 1: Installing Helm client
-Helm client runs on your laptop, CI/CD pipelines, etc. The installation of helm client is simplified for you through bash script.
+````sh
 
 curl -L https://git.io/get_helm.sh | bash
-
+````
 
 Here is the expected installation output:
 Helm v2.16.1 is available. Changing from version .
