@@ -41,10 +41,6 @@ Install minio in kubernetes cluster
 ````
 kubectl create ns spinnaker
 ````sh
-helm install minio --namespace spinnaker --set accessKey="myaccesskey" --set secretKey="mysecretkey" --set persistence.enabled=false stable/minio
-````
-The above helm install command will only work if you are running Helm v3+. If you are using Helm v2, use this command instead
-````
 helm install --name minio --namespace spinnaker --set accessKey="myaccesskey" --set secretKey="mysecretkey" --set persistence.enabled=false stable/minio
 ````
 Back inside the halyard container
@@ -57,10 +53,6 @@ echo "spinnaker.s3.versioning: false" > ~/.hal/default/profiles/front50-local.ym
 Set the storage type to minio/s3
 ````
 hal config storage s3 edit --endpoint http://minio:9000 --access-key-id "myaccesskey" --secret-access-key "mysecretkey"
-````
-hal config storage s3 edit --path-style-access true
-````
-hal config storage edit --type s3
 ````
 Choose spinnaker version to install
 ````sh
