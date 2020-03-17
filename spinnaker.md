@@ -1,12 +1,17 @@
-Deploying Spinnaker in a Kubernetes cluster
+#### Deploying Spinnaker in a Kubernetes cluster
+
+
 Pre-requisites
 Kubernetes cluster with atleast 4 cores and 8GB memory
 
 Start Halyard Container
+````
 mkdir ~/.hal
+````sh
 docker run --name halyard -v ~/.hal:/home/spinnaker/.hal -v ~/.kube/config:/home/spinnaker/.kube/config -d gcr.io/spinnaker-marketplace/halyard:stable
+````
 Get a shell into Halyard container
-
+````sh
 docker exec -it halyard bash
 Below commands are to be run inside the halyard container
 Check if you can run kubectl commands
