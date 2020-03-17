@@ -11,8 +11,8 @@ Locally configured kubectl.
 
 ````
 Step 1: Installing Helm client
+````
 ````sh
-
 curl -L https://git.io/get_helm.sh | bash
 ````
 
