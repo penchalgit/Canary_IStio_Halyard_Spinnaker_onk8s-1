@@ -17,26 +17,37 @@ curl -L https://git.io/get_helm.sh | bash
 ````
 
 Here is the expected installation output:
+````
 Helm v2.16.1 is available. Changing from version .
+````
 Downloading https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
+````
 Preparing to install helm and tiller into /usr/local/bin
+````
 helm installed into /usr/local/bin/helm
+````
 tiller installed into /usr/local/bin/tiller
+````
 Run 'helm init' to configure helm.
+````
 
 The helm binary package will be installed to /usr/local/bin/ directory.
+````
 
 $ helm version
+````
 Client: &version.Version{SemVer:"v2.16.1", GitCommit:"bbdfe5e7803a12bbdf97e94cd847859890cf4050", GitTreeState:"clean"}
+````
 
 Step 2: Create Tiller service account & Role binding
-Helm2 has a server component called Tiller. This changed in Helm 3 as there is no tiller. The tiller service will run in our Kubernetes cluster and the helm client talks to it when managing helm applications in the cluster.
+````
+Helm2 has a server component called Tiller. 
 We need to create service account for Tiller with admin access to the cluster. Create a new file called tiller-serivice-account.yaml.
-
+````
 $ vim tiller-account-rbac.yaml
 
 paste the below content in tiller-account-rbac.yaml
-
+````sh
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -55,27 +66,30 @@ subjects:
   - kind: ServiceAccount
     name: tiller
     namespace: kube-system
-	
+````	
 
 From the manifest definition, we have created a ClusterRoleBinding with cluster-admin permissions to the tiller service account.
-
+````
 Create the resources in Kubernetes using the kubectl command:
-
+````
 $ kubectl apply -f tiller-account-rbac.yaml
+````
 serviceaccount/tiller created
 clusterrolebinding.rbac.authorization.k8s.io/tiller created
 
 Confirm creation of these objects:
-
+````sh
 $ kubectl get serviceaccount tiller -n kube-system        
 NAME     SECRETS   AGE
 tiller   1         64s
-
+````
+````sh
 $ kubectl get clusterrolebinding tiller -n kube-system
 NAME     AGE
 tiller   100s
-
+````
 Step 3: Deploy Tiller and Initialize Helm
+````
 The helm init command is used to install Tiller (the Helm server-side component) onto your
 Kubernetes Cluster. Note that this command discovers Kubernetes clusters
 by reading $KUBECONFIG (default ‘~/.kube/config‘) and using the default context.
