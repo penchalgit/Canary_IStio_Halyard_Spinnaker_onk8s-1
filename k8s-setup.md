@@ -2,7 +2,7 @@
 #### Setup Kubernetes (K8s) Cluster on AWS
 
 
-1. Create Ubuntu EC2 instance
+1. Create Linux EC2 instance
 1. install AWSCLI
    ```sh 
     curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
@@ -11,7 +11,8 @@
     #sudo apt-get install unzip - if you dont have unzip in your system
     ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
     ```
-    
+    verify cli by aws --version
+    ````
 1. Install kubectl
    ```sh
    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
